@@ -52,11 +52,10 @@ void PostOrder(node *T)
 
 
 int main() {
-  node *root=NULL;
-  root=MakeNode('A');
+node *root=NULL;
+root=MakeNode('A');
 root->left=MakeNode('B');
 root->right=MakeNode('C');
-
 root->left->left=MakeNode('F');
 root->right->left=MakeNode('D');
 root->right->right=MakeNode('E');
