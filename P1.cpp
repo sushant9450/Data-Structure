@@ -1,71 +1,42 @@
 #include <bits/stdc++.h>
 using namespace std;
-struct node
+
+class Example
 {
-    char data;
-    struct node *left;
-    struct  node *right;    
-};
-node* MakeNode(char x)
-{
-    node *p;
-    p=new node;
-    p->data=x;
-    p->left=NULL;
-    p->right=NULL;
-    return p;
+    int a,b;
+public:
+  void getdata(int,int);
+  void display();
+  Example sum(Example &); //passing obj as reference
 };
 
-/********************** */
-void ProOrder(node *T)   //T==ROOT
+void Example::getdata(int x,int y)
 {
-    if(T!=NULL)
-    {
-        cout<<T->data<<", ";
-        ProOrder(T->left);
-        ProOrder(T->right);
-    }
-};
+    a=x;
+    b=y;
+}
+ void Example::display()
+ {
+    cout<<a<<" "<<b<<endl;
+ };
 
-/********************* */
-void InOrder(node *T)
+ Example Example::sum(Example &E1)     // return type bhi example hai and class bhi example hai
 {
-    if(T!=NULL)
-    {
-        InOrder(T->left);
-        cout<<T->data<<", ";
-        InOrder(T->right);
-    }
-};
-
-/******************** */
-void PostOrder(node *T)
-{
-    if(T!=NULL)
-    {
-        PostOrder(T->left);
-         PostOrder(T->right);
-        cout<<T->data<<", ";
-        
-    }
-};
-
-
+    Example S;
+    S.a = a + E1.a;  // a->(10) and E1.a->(100)
+    S.b = b + E1.b;   // b->(20) ans E1.b->(200)
+    return S;
+}
 int main() {
-node *root=NULL;
-root=MakeNode('A');
-root->left=MakeNode('B');
-root->right=MakeNode('C');
-root->left->left=MakeNode('F');
-root->right->left=MakeNode('D');
-root->right->right=MakeNode('E');
-cout<<"Preorde Traversal :=>";
-ProOrder(root);
-cout<<endl;
-cout<<"InOrder Traversal :=>";
-InOrder(root);
-cout<<endl;
-cout<<"PostOrder Traversal :=>";
-PostOrder(root);
+    Example  A,B,C;
+    A.getdata(10, 20);
+    A.display();
+    B.getdata(100, 200);
+    B.display();
+
+    C = A.sum(B);   //B->E1
+    C.display();
+    
+
     return 0;
 }
